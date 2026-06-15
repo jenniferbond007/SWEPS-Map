@@ -39,7 +39,7 @@
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
-        }).fitBounds([[44.63456573397567,-64.00241803676369],[45.02441857787223,-62.95945502435549]]);
+        }).fitBounds([[44.671988766639174,-64.00490925558266],[44.99161892699339,-63.14977844446126]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/qgis2web/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -173,15 +173,15 @@
             return {
                 pane: 'pane_ShubieWatershed_1',
                 opacity: 1,
-                color: 'rgba(35,35,35,0.7)',
+                color: 'rgba(35,35,35,0.5)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(126,27,46,0.7)',
-                interactive: true,
+                fillColor: 'rgba(126,27,46,0.5)',
+                interactive: false,
             }
         }
         map.createPane('pane_ShubieWatershed_1');
@@ -189,7 +189,7 @@
         map.getPane('pane_ShubieWatershed_1').style['mix-blend-mode'] = 'normal';
         var layer_ShubieWatershed_1 = new L.geoJson(json_ShubieWatershed_1, {
             attribution: '',
-            interactive: true,
+            interactive: false,
             dataVar: 'json_ShubieWatershed_1',
             layerName: 'layer_ShubieWatershed_1',
             pane: 'pane_ShubieWatershed_1',
@@ -256,6 +256,7 @@
             },
         });
         bounds_group.addLayer(layer_RestorationSpots_2);
+        map.addLayer(layer_RestorationSpots_2);
         function pop_SWEPSCodes_3(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
@@ -321,6 +322,21 @@
         });
         bounds_group.addLayer(layer_SWEPSCodes_3);
         map.addLayer(layer_SWEPSCodes_3);
+        var overlaysTree = [
+            {label: '<img src="legend/SWEPSCodes_3.png" /> SWEPS Codes', layer: layer_SWEPSCodes_3},
+            {label: '<img src="legend/RestorationSpots_2.png" /> Restoration Spots', layer: layer_RestorationSpots_2},
+            {label: '<img src="legend/ShubieWatershed_1.png" /> Shubie Watershed', layer: layer_ShubieWatershed_1},
+            {label: "OpenStreetMap", layer: layer_OpenStreetMap_0, radioGroup: 'bm' },]
+        var lay = L.control.layers.tree(null, overlaysTree,{
+            //namedToggle: true,
+            //selectorBack: false,
+            //closedSymbol: '&#8862; &#x1f5c0;',
+            //openedSymbol: '&#8863; &#x1f5c1;',
+            //collapseAll: 'Collapse all',
+            //expandAll: 'Expand all',
+            collapsed: true,
+        });
+        lay.addTo(map);
         setBounds();
         var i = 0;
         layer_RestorationSpots_2.eachLayer(function(layer) {
