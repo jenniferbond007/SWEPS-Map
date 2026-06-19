@@ -12,9 +12,11 @@
         <link rel="stylesheet" href="css/fontawesome-all.min.css">
         <link rel="stylesheet" href="css/leaflet.photon.css">
         <style>
-        #map {
-            width: 1203px;
-            height: 635px;
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
         }
         </style>
         <title></title>
@@ -34,8 +36,8 @@
         <script src="js/labels.js"></script>
         <script src="js/leaflet.photon.js"></script>
         <script src="data/ShubieWatershed_1.js"></script>
-        <script src="data/RestorationSpots_2.js"></script>
-        <script src="data/SWEPSCodes_3.js"></script>
+        <script src="data/SWEPSCodes_2.js"></script>
+        <script src="data/RestorationSpots_3.js"></script>
         <script>
         var map = L.map('map', {
             zoomControl:false, maxZoom:28, minZoom:1
@@ -198,66 +200,7 @@
         });
         bounds_group.addLayer(layer_ShubieWatershed_1);
         map.addLayer(layer_ShubieWatershed_1);
-        function pop_RestorationSpots_2(feature, layer) {
-            var popupContent = '<table>\
-                    <tr>\
-                        <td class="visible-with-data" id="Location" colspan="2"><strong>Location</strong><br />' + (feature.properties['Location'] !== null ? autolinker.link(String(feature.properties['Location']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Latitude Y'] !== null ? autolinker.link(String(feature.properties['Latitude Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['Longitude X'] !== null ? autolinker.link(String(feature.properties['Longitude X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">Notes</th>\
-                        <td class="visible-with-data" id="Notes">' + (feature.properties['Notes'] !== null ? autolinker.link(String(feature.properties['Notes']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
-			layer.on('popupopen', function(e) {
-				addClassToPopupIfMedia(content, e.popup);
-			});
-			layer.bindPopup(content, { maxHeight: 400 });
-        }
-
-        function style_RestorationSpots_2_0() {
-            return {
-                pane: 'pane_RestorationSpots_2',
-                radius: 4.0,
-                opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
-                dashArray: '',
-                lineCap: 'butt',
-                lineJoin: 'miter',
-                weight: 1,
-                fill: true,
-                fillOpacity: 1,
-                fillColor: 'rgba(244,232,12,1.0)',
-                interactive: true,
-            }
-        }
-        map.createPane('pane_RestorationSpots_2');
-        map.getPane('pane_RestorationSpots_2').style.zIndex = 402;
-        map.getPane('pane_RestorationSpots_2').style['mix-blend-mode'] = 'normal';
-        var layer_RestorationSpots_2 = new L.geoJson(json_RestorationSpots_2, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_RestorationSpots_2',
-            layerName: 'layer_RestorationSpots_2',
-            pane: 'pane_RestorationSpots_2',
-            onEachFeature: pop_RestorationSpots_2,
-            pointToLayer: function (feature, latlng) {
-                var context = {
-                    feature: feature,
-                    variables: {}
-                };
-                return L.circleMarker(latlng, style_RestorationSpots_2_0(feature));
-            },
-        });
-        bounds_group.addLayer(layer_RestorationSpots_2);
-        map.addLayer(layer_RestorationSpots_2);
-        function pop_SWEPSCodes_3(feature, layer) {
+        function pop_SWEPSCodes_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['field_1'] !== null ? autolinker.link(String(feature.properties['field_1']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
@@ -286,9 +229,9 @@
 			layer.bindPopup(content, { maxHeight: 400 });
         }
 
-        function style_SWEPSCodes_3_0() {
+        function style_SWEPSCodes_2_0() {
             return {
-                pane: 'pane_SWEPSCodes_3',
+                pane: 'pane_SWEPSCodes_2',
                 radius: 4.0,
                 opacity: 1,
                 color: 'rgba(35,35,35,1.0)',
@@ -302,29 +245,88 @@
                 interactive: true,
             }
         }
-        map.createPane('pane_SWEPSCodes_3');
-        map.getPane('pane_SWEPSCodes_3').style.zIndex = 403;
-        map.getPane('pane_SWEPSCodes_3').style['mix-blend-mode'] = 'normal';
-        var layer_SWEPSCodes_3 = new L.geoJson(json_SWEPSCodes_3, {
+        map.createPane('pane_SWEPSCodes_2');
+        map.getPane('pane_SWEPSCodes_2').style.zIndex = 402;
+        map.getPane('pane_SWEPSCodes_2').style['mix-blend-mode'] = 'normal';
+        var layer_SWEPSCodes_2 = new L.geoJson(json_SWEPSCodes_2, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_SWEPSCodes_3',
-            layerName: 'layer_SWEPSCodes_3',
-            pane: 'pane_SWEPSCodes_3',
-            onEachFeature: pop_SWEPSCodes_3,
+            dataVar: 'json_SWEPSCodes_2',
+            layerName: 'layer_SWEPSCodes_2',
+            pane: 'pane_SWEPSCodes_2',
+            onEachFeature: pop_SWEPSCodes_2,
             pointToLayer: function (feature, latlng) {
                 var context = {
                     feature: feature,
                     variables: {}
                 };
-                return L.circleMarker(latlng, style_SWEPSCodes_3_0(feature));
+                return L.circleMarker(latlng, style_SWEPSCodes_2_0(feature));
             },
         });
-        bounds_group.addLayer(layer_SWEPSCodes_3);
-        map.addLayer(layer_SWEPSCodes_3);
+        bounds_group.addLayer(layer_SWEPSCodes_2);
+        map.addLayer(layer_SWEPSCodes_2);
+        function pop_RestorationSpots_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td class="visible-with-data" id="Location" colspan="2"><strong>Location</strong><br />' + (feature.properties['Location'] !== null ? autolinker.link(String(feature.properties['Location']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Latitude Y'] !== null ? autolinker.link(String(feature.properties['Latitude Y']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Longitude X'] !== null ? autolinker.link(String(feature.properties['Longitude X']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Notes</th>\
+                        <td class="visible-with-data" id="Notes">' + (feature.properties['Notes'] !== null ? autolinker.link(String(feature.properties['Notes']).replace(/'/g, '\'').toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            var content = removeEmptyRowsFromPopupContent(popupContent, feature);
+			layer.on('popupopen', function(e) {
+				addClassToPopupIfMedia(content, e.popup);
+			});
+			layer.bindPopup(content, { maxHeight: 400 });
+        }
+
+        function style_RestorationSpots_3_0() {
+            return {
+                pane: 'pane_RestorationSpots_3',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(244,232,12,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_RestorationSpots_3');
+        map.getPane('pane_RestorationSpots_3').style.zIndex = 403;
+        map.getPane('pane_RestorationSpots_3').style['mix-blend-mode'] = 'normal';
+        var layer_RestorationSpots_3 = new L.geoJson(json_RestorationSpots_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_RestorationSpots_3',
+            layerName: 'layer_RestorationSpots_3',
+            pane: 'pane_RestorationSpots_3',
+            onEachFeature: pop_RestorationSpots_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_RestorationSpots_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_RestorationSpots_3);
+        map.addLayer(layer_RestorationSpots_3);
         var overlaysTree = [
-            {label: '<img src="legend/SWEPSCodes_3.png" /> SWEPS Codes', layer: layer_SWEPSCodes_3},
-            {label: '<img src="legend/RestorationSpots_2.png" /> Restoration Spots', layer: layer_RestorationSpots_2},
+            {label: '<img src="legend/RestorationSpots_3.png" /> Restoration Spots', layer: layer_RestorationSpots_3},
+            {label: '<img src="legend/SWEPSCodes_2.png" /> SWEPS Codes', layer: layer_SWEPSCodes_2},
             {label: '<img src="legend/ShubieWatershed_1.png" /> Shubie Watershed', layer: layer_ShubieWatershed_1},
             {label: "OpenStreetMap", layer: layer_OpenStreetMap_0, radioGroup: 'bm' },]
         var lay = L.control.layers.tree(null, overlaysTree,{
@@ -339,12 +341,12 @@
         lay.addTo(map);
         setBounds();
         var i = 0;
-        layer_RestorationSpots_2.eachLayer(function(layer) {
+        layer_SWEPSCodes_2.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Location'] !== null?String('<div style="color: #323232; font-size: 10pt; font-weight: bold; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['Location']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_RestorationSpots_2'});
+            layer.bindTooltip((layer.feature.properties['Code'] !== null?String('<div style="color: #323232; font-size: 10pt; font-weight: bold; font-family: \'Gadugi\', sans-serif;">' + layer.feature.properties['Code']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SWEPSCodes_2'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
@@ -352,28 +354,28 @@
               i++;
         });
         var i = 0;
-        layer_SWEPSCodes_3.eachLayer(function(layer) {
+        layer_RestorationSpots_3.eachLayer(function(layer) {
             var context = {
                 feature: layer.feature,
                 variables: {}
             };
-            layer.bindTooltip((layer.feature.properties['Code'] !== null?String('<div style="color: #323232; font-size: 10pt; font-weight: bold; font-family: \'Gadugi\', sans-serif;">' + layer.feature.properties['Code']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_SWEPSCodes_3'});
+            layer.bindTooltip((layer.feature.properties['Location'] !== null?String('<div style="color: #323232; font-size: 10pt; font-weight: bold; font-family: \'Arial Black\', sans-serif;">' + layer.feature.properties['Location']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_RestorationSpots_3'});
             labels.push(layer);
             totalMarkers += 1;
               layer.added = true;
               addLabel(layer, i);
               i++;
         });
-        resetLabels([layer_ShubieWatershed_1,layer_RestorationSpots_2,layer_SWEPSCodes_3]);
+        resetLabels([layer_ShubieWatershed_1,layer_SWEPSCodes_2,layer_RestorationSpots_3]);
         map.on("zoomend", function(){
-            resetLabels([layer_ShubieWatershed_1,layer_RestorationSpots_2,layer_SWEPSCodes_3]);
+            resetLabels([layer_ShubieWatershed_1,layer_SWEPSCodes_2,layer_RestorationSpots_3]);
         });
         map.on("layeradd", function(){
-            resetLabels([layer_ShubieWatershed_1,layer_RestorationSpots_2,layer_SWEPSCodes_3]);
+            resetLabels([layer_ShubieWatershed_1,layer_SWEPSCodes_2,layer_RestorationSpots_3]);
         });
         map.on("layerremove", function(){
-            resetLabels([layer_ShubieWatershed_1,layer_RestorationSpots_2,layer_SWEPSCodes_3]);
+            resetLabels([layer_ShubieWatershed_1,layer_SWEPSCodes_2,layer_RestorationSpots_3]);
         });
-        </script>
+        </script>        
     </body>
 </html>
